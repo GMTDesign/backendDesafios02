@@ -1,0 +1,23 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "productsMock",
+    "dateExported": "2024-02-23T04:29:14.149Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a4773b19-838b-4bc2-986e-a02de8c00dfa",
+            "colId": "883aa7be-e98a-44d6-a322-fe9d14fa6b19",
+            "containerId": "",
+            "name": "crearProductos",
+            "url": "http://localhost:8080/api/mockingproducts",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-23T04:28:21.421Z",
+            "modified": "2024-02-23T04:28:28.759Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
