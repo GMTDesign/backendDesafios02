@@ -1,4 +1,5 @@
 import { neededValue } from "../../dao/fsDao/services/ProductManager.js"
+import { InvalidArgumentsError } from "../../errors/errors.js"
 
 export class Product {
     #title
@@ -25,7 +26,8 @@ export class Product {
     }
 
     set title(newTitle) {
-        if (!isNaN(newTitle)) throw new Error('el título debe ser un texto')
+        //if (!isNaN(newTitle)) throw new Error('el título debe ser un texto')
+        if (!isNaN(newTitle)) throw new InvalidArgumentsError('el título debe ser un texto')
         this.#title = newTitle
     }
 
@@ -34,7 +36,7 @@ export class Product {
     }
 
     set description(newDescription) {
-        if (!isNaN(newDescription)) throw new Error('la descripción debe ser un texto')
+        if (!isNaN(newDescription)) throw new InvalidArgumentsError('la descripción debe ser un texto')
         this.#description = newDescription
     }
 
@@ -43,7 +45,7 @@ export class Product {
     }
 
     set code(newCode) {
-        if (!isNaN(newCode)) throw new Error('el código de producto debe ser un texto')
+        if (!isNaN(newCode)) throw new InvalidArgumentsError('el código de producto debe ser un texto')
         this.#code = newCode
     }
 
@@ -52,7 +54,7 @@ export class Product {
     }
 
     set price(newPrice) {
-        if (newPrice <= 0 || isNaN(newPrice)) throw new Error('el precio debe ser un número mayor a 0')
+        if (newPrice <= 0 || isNaN(newPrice)) throw new InvalidArgumentsError('el precio debe ser un número mayor a 0')
         this.#price = newPrice
     }
 
@@ -61,7 +63,7 @@ export class Product {
     }
 
     set stock(newStock) {
-        if (newStock < 0 || isNaN(newStock)) throw Error('el stock debe ser un número y no puede ser negativo')
+        if (newStock < 0 || isNaN(newStock)) throw InvalidArgumentsError('el stock debe ser un número y no puede ser negativo')
         this.#stock = newStock
     }
 
@@ -70,7 +72,7 @@ export class Product {
     }
 
     set category(newCategory) {
-        if (!isNaN(newCategory)) throw new Error('la categoría debe ser un texto')
+        if (!isNaN(newCategory)) throw new InvalidArgumentsError('la categoría debe ser un texto')
         this.#category = newCategory
     }
 

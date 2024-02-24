@@ -1,16 +1,18 @@
-import { NotFoundError } from "../../errors/errors.js"
+import { InvalidArgumentsError, NotFoundError } from "../../errors/errors.js"
 import { cartsService } from "../../services/carts.service.js"
 
-export async function getByIdController(req, res) {
-    const cid = req.params.cid
-    const searched = await cartsService.getCart(cid)
-    if (!searched) {
-        console.log('entro')
-        return res.status(404).json({ message: 'carrito inexistente' })
-        
-        //return new NotFoundError('carrito inexistente')
+export async function getByIdController(req, res, next) {
+    try {
+        const cid = req.params.cid
+        const searched = await cartsService.getCart(cid)
+        if (!searched) {
+            throw new NotFoundError('carrito inexistente')
+        }
+        res.json(searched)
+    } catch (error) {
+        next(error)
     }
-    res.json(searched)
+
 }
 
 export async function postController(req, res) {
@@ -18,64 +20,71 @@ export async function postController(req, res) {
         const newCart = await cartsService.postCart()
         res.json(newCart)
     } catch (error) {
-        res.status(400).json({ message: error.message })
+        next(new InvalidArgumentsError('datos inválidos'))
     }
 }
 
-export async function postProductController(req, res) {
+export async function postProductController(req, res, next) {
     const cid = req.params.cid
     const pid = req.params.pid
     try {
         const addedProduct = await cartsService.postProduct(cid, pid)
+        if (!addedProduct) throw new InvalidArgumentsError('datos inválidos')
         res.json(addedProduct)
     } catch (error) {
-        res.status(400).json({
-            message: error.message
-        })
+        next(error)
     }
 }
 
-export async function putController (req, res) {
+export async function putController(req, res, error) {
     const cid = req.params.cid
     try {
         const updatedCart = await cartsService.putCart(cid)
+        if (!updatedCart) throw new InvalidArgumentsError('datos inválidos')
         res.json(updatedCart)
     } catch (error) {
-        res.status(400).json({
-            message: error.message
-        })
+        next(error)
     }
 }
 
-export async function putProductController (req, res) {
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const { newQuantity } = req.body
+export async function putProductController(req, res, next) {
     try {
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const { newQuantity } = req.body
         const updatedProduct = await cartsService.putProduct(cid, pid, newQuantity)
+        if (!updatedProduct) throw new InvalidArgumentsError('datos inválidos')
         res.json(updatedProduct)
     } catch (error) {
-        res.status(400).json({
-            message: error.message
-        })
+        next(error)
     }
 }
 
-export async function deleteController (req, res) {
-    const cid = req.params.cid
-    const deletedCart = await cartsService.deleteCart(cid)
-    if (!deletedCart) {
-       return res.status(404).json({ message: 'carrito inexistente'})
+export async function deleteController(req, res) {
+    try {
+        const cid = req.params.cid
+        const deletedCart = await cartsService.deleteCart(cid)
+        if (!deletedCart) {
+            throw new NotFoundError('carrito no encontrado')
+        }
+        res.json(deletedCart)
+    } catch (error) {
+        next(error)
     }
-    res.json(deletedCart)
+
 }
 
-export async function deleteProductController (req, res) {
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const deletedProduct = await cartsService.deleteProduct(cid, pid)
-    if (!deletedProduct) {
-       return res.status(404).json({ message: 'producto inexistente'})
+export async function deleteProductController(req, res) {
+    try {
+        const cid = req.params.cid
+        const pid = req.params.pid
+        const deletedProduct = await cartsService.deleteProduct(cid, pid)
+        if (!deletedProduct) {
+            throw new NotFoundError('producto no encontrado')
+        }
+        res.json(deletedProduct)
+    } catch (error) {
+        next(error)
     }
-    res.json(deletedProduct)
+   
 }

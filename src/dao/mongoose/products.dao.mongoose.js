@@ -28,12 +28,12 @@ class ProductsDaoMongoose {
          updateImages.addThumbnail(images)
       }
       const updatedProduct = await productManager.findByIdAndUpdate(id, { $set: data }, { new: true })
-      return updatedProduct.toObject()
+      return updatedProduct
    }
 
    async deleteOne(pid) {
       const deletedProduct = await productManager.findByIdAndDelete(pid)
-      return deletedProduct.toObject()
+      return deletedProduct
    }
 }
 

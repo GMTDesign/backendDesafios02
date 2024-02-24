@@ -19,7 +19,7 @@ class CartsDaoMongoose {
     async createProduct(cid, pid) {
         const addedProduct = await cartManager.findById(cid)
         addedProduct.addProduct(pid)
-        return addedProduct.toObject()
+        return addedProduct
     }
 
     async updateCart(cid) {

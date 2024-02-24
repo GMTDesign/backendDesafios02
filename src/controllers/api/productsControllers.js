@@ -1,4 +1,5 @@
 import { NotFoundError } from "../../errors/errors.js"
+import { Product } from "../../models/customModels/Product.js"
 import { productsService } from "../../services/products.service.js"
 
 export async function getController(req, res) {
@@ -35,30 +36,36 @@ export async function getController(req, res) {
     res.json(result)
 }
 
-export async function getByIdController(req, res) {
-    const id = req.params.pid
-    const searched = await productsService.getProduct(id)
-    if (!searched) {
-        //return res.status(404).json({ message: 'producto inexistente' })
-        return new NotFoundError('producto inexistente')
+export async function getByIdController(req, res, next) {
+    try {
+        const id = req.params.pid
+        const searched = await productsService.getProduct(id)
+        if (!searched) {
+            throw new NotFoundError('producto inexistente')
+        }
+        res.json(searched)
+    } catch (error) {
+        next(error)
     }
-    res.json(searched)
+
+
 }
 
-export async function postController(req, res) {
+export async function postController(req, res, next) {
     try {
         if (req.file) {
             req.body.thumbnails = req.file.filename
         }
         const { title, description, code, price, status, stock, category, thumbnails } = req.body
+        const validateProduct = new Product({ title, description, code, price, status, stock, category, thumbnails })
         const newProduct = await productsService.postProduct({ title, description, code, price, status, stock, category, thumbnails })
         res.status(201).json(newProduct)
     } catch (error) {
-        res.status(400).json({ message: error.message })
+        next(error)
     }
 }
 
-export async function putController(req, res) {
+export async function putController(req, res, next) {
     try {
         const id = req.params.pid
         let images
@@ -68,20 +75,26 @@ export async function putController(req, res) {
         const data = req.body
         let updatedProduct
         updatedProduct = await productsService.putProduct(id, data, images)
+        if (!updatedProduct) {
+            throw new NotFoundError('producto no encontrado')
+        }
+        res.json(updatedProduct)
     } catch (error) {
-        return res.status(400).json({ message: error.message })
+        next(error)
     }
-    if (!updatedProduct) {
-        return res.status(404).json({ message: 'producto no encontrado' })
-    }
-    res.json(updatedProduct)
+
 }
 
-export async function deleteController(req, res) {
-    const id = req.params.pid
-    const deletedProduct = await productsService.deleteProduct(id)
-    if (!deletedProduct) {
-        return res.status(404).json({ message: 'producto inexistente' })
+export async function deleteController(req, res, next) {
+    try {
+        const id = req.params.pid
+        const deletedProduct = await productsService.deleteProduct(id)
+        if (!deletedProduct) {
+            throw new NotFoundError('producto inexistente')
+        }
+        res.json(deletedProduct)
+    } catch (error) {
+        next(error)
     }
-    res.json(deletedProduct)
+
 }

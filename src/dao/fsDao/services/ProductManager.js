@@ -1,5 +1,5 @@
 import fs from 'fs/promises'
-import { Product } from '../../../models/Product.js'
+import { Product } from '../../../models/customModels/Product.js'
 import { randomUUID } from 'crypto'
 
 export function neededValue(value, flag){

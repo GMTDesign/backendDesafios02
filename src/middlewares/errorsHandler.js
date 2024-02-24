@@ -1,14 +1,16 @@
 import { ErrorType } from "../errors/errors.js"
 
 export function errorsHandler(error, req, res, next) {
+    let code = 500
     switch (error.name) {
         case ErrorType.INVALID_ARGUMENTS:
-            res.status(400)
+            code = 400
             break
         case ErrorType.NOT_FOUND:
-            res.status(404)
+            code = 404
+            break
         default:
-            res.status(500)
+            code = 500
     }
-    res.json({ status: 'error', message: error.message })
+    return res.status(code).json({ status: 'error', message: error.message })
 }

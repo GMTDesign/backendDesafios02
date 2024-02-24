@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "productos",
-    "dateExported": "2024-01-28T00:08:19.905Z",
+    "dateExported": "2024-02-24T06:17:51.050Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -24,11 +24,11 @@
             "colId": "0a2e5b59-3f91-411c-bc90-916d99e4b230",
             "containerId": "",
             "name": "obtener un producto",
-            "url": "http://localhost:8080/api/products/a0fb8ad0-9a2a-4e1b-898b-7760dad57ec5",
+            "url": "http://localhost:8080/api/products/7d94cc63-85ec-55bd-94ca-dc98755c0560",
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-01-27T06:32:03.293Z",
-            "modified": "2024-01-27T06:36:14.749Z",
+            "modified": "2024-02-24T05:40:11.516Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -42,7 +42,7 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2024-01-27T06:33:18.548Z",
-            "modified": "2024-01-27T06:35:48.216Z",
+            "modified": "2024-02-24T06:07:09.080Z",
             "headers": [],
             "params": [],
             "body": {
@@ -59,11 +59,11 @@
                     },
                     {
                         "name": "code",
-                        "value": "PRUEBA"
+                        "value": "LLL"
                     },
                     {
                         "name": "price",
-                        "value": "5000"
+                        "value": "aaaaa"
                     },
                     {
                         "name": "category",
@@ -84,11 +84,11 @@
             "colId": "0a2e5b59-3f91-411c-bc90-916d99e4b230",
             "containerId": "",
             "name": "eliminar un producto",
-            "url": "http://localhost:8080/api/products/a0fb8ad0-9a2a-4e1b-898b-7760dad57ec5",
+            "url": "http://localhost:8080/api/products/332ppp88-cf61-4357-8233-7d8bfbec30b5",
             "method": "DELETE",
             "sortNum": 40000,
             "created": "2024-01-27T06:36:30.767Z",
-            "modified": "2024-01-27T06:36:58.254Z",
+            "modified": "2024-02-24T06:17:19.922Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -98,11 +98,11 @@
             "colId": "0a2e5b59-3f91-411c-bc90-916d99e4b230",
             "containerId": "",
             "name": "modificar un producto",
-            "url": "http://localhost:8080/api/products/7d94cc63-85ec-44bd-94ca-dc98755c0560",
+            "url": "http://localhost:8080/api/products/471507d6-6428-4163-bfea-cba3f8617140",
             "method": "PUT",
             "sortNum": 50000,
             "created": "2024-01-27T06:37:57.887Z",
-            "modified": "2024-01-27T06:38:42.564Z",
+            "modified": "2024-02-24T06:15:19.980Z",
             "headers": [],
             "params": [],
             "body": {
@@ -111,7 +111,7 @@
                 "form": [
                     {
                         "name": "price",
-                        "value": "60000"
+                        "value": "34000"
                     }
                 ]
             },
