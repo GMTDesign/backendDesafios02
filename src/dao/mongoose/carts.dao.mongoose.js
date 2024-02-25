@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
 import { cartManager } from "../../models/mongooseModels/Cart.js"
 import { MONGO_URL } from "../../config/config.js"
+import { logger } from "../../utils/logger.js"
 
 await mongoose.connect(MONGO_URL)
-//console.log('se conectó a MongoDB')
+logger.info('Carritos: persistencia en MongoDB')
 
 class CartsDaoMongoose {
     async readOne(cid) {

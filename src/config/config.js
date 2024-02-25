@@ -1,4 +1,7 @@
 import 'dotenv/config'
+import { logger } from '../utils/logger.js'
+
+logger.info('cargando config')
 
 export const PORT = process.env.PORT
 export const MONGO_URL = process.env.MONGO_URL

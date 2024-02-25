@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
 import { productManager } from "../../models/mongooseModels/Product.js"
 import { MONGO_URL } from "../../config/config.js"
+import { logger } from "../../utils/logger.js"
 
 await mongoose.connect(MONGO_URL)
-console.log('se conectó a MongoDB')
+logger.info('Productos: persistencia en MongoDB')
 
 class ProductsDaoMongoose {
 

@@ -1,9 +1,10 @@
 import mongoose from "mongoose"
 import { userManager } from "../../models/mongooseModels/User.js"
 import { MONGO_URL } from "../../config/config.js"
+import { logger } from "../../utils/logger.js"
 
 await mongoose.connect(MONGO_URL)
-console.log('se conectó a MongoDB')
+logger.info('Usuarios: persistencia en MongoDB')
 
 class UsersDaoMongoose {
    
